@@ -58,6 +58,10 @@ At the end there sould be a binary tree with each of the different state ID's
 
 ![Binary Tree](https://www.cdn.geeksforgeeks.org/wp-content/uploads/binary-tree-to-DLL.png)
 
+## DONE
+
+	- creation script is done, allowing the user to easily create a script
+
 ## TODO
 
 ### script that creates a state
@@ -66,6 +70,7 @@ At the end there sould be a binary tree with each of the different state ID's
 	- easy way to 'select' the next state to jump to
 	- cli obviously..
 	- need to check if script if conform -> return value of script needs to be checked -> used for jumping to next state
+	- check read/write permissions of script, need to be rw but the creator and ro to everyone else
 
 ### script that runs the program
 
@@ -78,5 +83,7 @@ At the end there sould be a binary tree with each of the different state ID's
 	- a way to score ?
 	- a way to save ?
 	- edit state ?
+	- a way to monitor who created a state and when ?
+
 
 :)
