@@ -18,13 +18,13 @@ For coding each 'senario / state' shall be represented by a single file, contain
   "TEXT": "The corridor leads you to the dreaded room 218...",
   "OPTIONS": {
     "enter the room" : 2,
-    "continue" : ID_OF_NEXT_STATE
+    "continue" : "ID_OF_NEXT_STATE"
   },
   "COMMANDS": {
     "look": "there is nothing to look for",
     "search":"..."
   },
-  "SCRIPT": game_script
+  "SCRIPT": "game_script"
 }
 ```
 
