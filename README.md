@@ -1,18 +1,16 @@
 # eisti-adventure
+
 Text adventure journey though eisti. 
 
 The aim of this project is to create a customizable cli text adventure game that is created by the students of EISTI. 
 
-## COMMENTS
+## Concept
 
-Need a global set of commands that you can enter:
-look, search, go to, take, pick up...
-
-For coding each 'senario / state' shall be represented by a single file, containing all the infomation about that action.
+the concept behind this is too have a script (python) that runs the game. the game is composed of a number of json files where each file is named with a unique ID. 
 
 ### Exemple : state_1.rpg
 
-```json
+```json```
 {
   "ID": 1,
   "TEXT": "The corridor leads you to the dreaded room 218...",
@@ -28,13 +26,9 @@ For coding each 'senario / state' shall be represented by a single file, contain
 }
 ```
 
-```c
-ID // the id of this state, used when 'jumping' to a diffent state
-TEXT // the text to be displayed when the file is called
-OPTIONS // if nessisary the options to choose from, each one will 'point' to a different state file using its ID
-COMMANDS // using the global commands to add interaction in the game
-SCRIPT // if nesisary can be used to start a game / challenge
-```
+	ID
+
+
 
 At the end there sould be a binary tree with each of the different state ID's
 
