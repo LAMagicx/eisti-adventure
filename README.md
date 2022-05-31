@@ -77,3 +77,4 @@ At the end there sould be a binary tree with each of the different state ID's
 
 	- a way to score ?
 	- a way to save ?
+	- edit state ?
