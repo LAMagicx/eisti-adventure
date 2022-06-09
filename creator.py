@@ -13,7 +13,7 @@ def calculateId():
                 printError('WARNING', 'file: {} not conform'.format(file_name))
         else:
             printError('WARNING', 'file {} not json type'.format(file_name))
-    return max(existing_ids) + 1
+    return str(max(existing_ids) + 1)
 
 class State:
     def __init__(self):
@@ -22,19 +22,21 @@ class State:
         self.text = ''
         self.options = {}
         self.commands = {}
-        self.script = {}
+        self.script = ""
         self.fillState()
+        self.saveState()
 
     def fillState(self):
         while True:
             os.system('clear')
             print("""
-                    State ID: {0}
-                    1 - Title: {1}
-                    2 - Text: {2}
-                    3 - Options: {3}
-                    4 - Commands: {4}
-                    5 - SCRIPT: {5}
+State ID: {0}
+1 - Title: {1}
+2 - Text: {2}
+3 - Options: {3}
+4 - Commands: {4}
+5 - SCRIPT: {5}
+6 - exit
                     """.format(
                         self.id,
                         self.title,
@@ -44,7 +46,12 @@ class State:
                         self.script
                      )
                  )
-            choice = int(input("Choose what you would like to do: [1-5]\n> "))
+            while True:
+                try:
+                    choice = int(input("Choose what you would like to do: [1-5]\n> "))
+                    break
+                except:
+                    print('not a number')
             if choice == 1:
                 self.setTitle()
             elif choice == 2:
@@ -67,15 +74,21 @@ class State:
 
     def setOptions(self):
         while True:
+            os.system('clear')
             print('Options:')
             print(json.dumps(self.options))
             print("""
-                    1 - add option
-                    2 - edit option
-                    3 - delete option
-                    4 - exit
+1 - add option
+2 - edit option
+3 - delete option
+4 - exit
                     """)
-            choice = int(input('What would you like to do ?'))
+            while True:
+                try:
+                    choice = int(input('What would you like to do ?'))
+                    break
+                except:
+                    print('not a number')
             if choice == 1:
                 self.createOption()
             elif choice == 4:
@@ -85,20 +98,31 @@ class State:
 
     def createOption(self):
         text = input('Option text: ')
-        id_ = int(input('Id of next state: '))
-        self.options.update({text: id_})
+        while True:
+            try:
+                id_ = int(input('Id of next state: '))
+                break
+            except:
+                print('not a number')
+        self.options.update({text: str(id_)})
 
     def setCommands(self):
         while True:
+            os.system('clear')
             print('Commands:')
             print(json.dumps(self.commands))
             print("""
-                    1 - add command
-                    2 - edit command
-                    3 - delete command
-                    4 - exit
+1 - add command
+2 - edit command
+3 - delete command
+4 - exit
                     """)
-            choice = int(input('What would you like to do ?'))
+            while True:
+                try:
+                    choice = int(input('What would you like to do ?'))
+                    break
+                except:
+                    print('not a number')
             if choice == 1:
                 self.createCommand()
             elif choice == 4:
@@ -108,17 +132,43 @@ class State:
 
     def createCommand(self):
         text = input('Command: ')
-        response = int(input('Command response: '))
+        response = input('Command response: ')
         self.commands.update({text: response})
 
     def setScript(self):
-        scripts = os.listdir('scripts/')
-        print("0 - enter path for script")
-        for i, f in enumerate(scripts):
-            print(i, '-', f)
-        choice = int(input('What script: '))
-        # check choice
-        if choice == 0:
-            self.script = input('Script name: ')
-        else:
-            self.script = scripts[choice]
+        self.script = ""
+        if input("Do you want to add a script y/n ?: ") == 'y':
+            scripts = os.listdir('scripts/')
+            print("0 - enter path for script")
+            for i, f in enumerate(scripts):
+                print(i, '-', f)
+            while True:
+                try:
+                    choice = int(input('What script: '))
+                    break
+                except:
+                    print('not a number')
+            # check choice
+            if choice == 0:
+                self.script = input('Script name: ')
+            else:
+                self.script = scripts[choice]
+
+    def saveState(self):
+        data = {}
+        data['ID'] = self.id
+        data['TITLE'] = self.title
+        data['TEXT'] = self.text
+        data['OPTIONS'] = self.options
+        data['COMMANDS'] = self.commands
+        data['SCRIPT'] = self.script
+        print("saving: ", json.dumps(data))
+        json.dump(data, open("scripts/" + self.id + ".json", "w"), indent=2)
+
+if __name__ == "__main__":
+    # if folders aren't created create folders
+    if not os.path.exists("scripts/"):
+        os.mkdir("scripts")
+    if not os.path.exists("states/"):
+        os.mkdir("states")
+    State()
