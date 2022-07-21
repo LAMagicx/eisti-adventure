@@ -23,7 +23,8 @@ the concept behind this is too have a script (python) that runs the game. the ga
     "look": "there is nothing to look for",
     "search":"..."
   },
-  "SCRIPT": "game_script"
+  "SCRIPT": "game_script",
+  "EDITABLE": 0 / 1
 }
 ```
 
@@ -50,6 +51,10 @@ these will be a set of commands that the user can run whilst at this state, if i
 ### SCRIPT 
 
 an executable that can be launched by the the program to play a senario of some sort. 
+
+### EDITABLE
+
+whether or not anyone can edit the file or not
 
 
 
