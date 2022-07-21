@@ -1,5 +1,5 @@
 import json, os
-from setup import printError
+from setup import printError, log
 
 # finds the next id by finding the last max id used then add 1
 def calculateId():
@@ -21,6 +21,7 @@ class State:
         self.id = None
         if file_id:
             self.loadFile(file_id)
+            self.state = "edited"
         else:
             self.id = calculateId()
             self.title = ''
@@ -29,6 +30,7 @@ class State:
             self.commands = {}
             self.script = ""
             self.editable = 0 # not editable
+            self.state = "created"
         if self.id:
             self.fillState()
             self.saveState()
@@ -52,7 +54,7 @@ class State:
 
     def fillState(self):
         while True:
-            #os.system('clear')
+            os.system('clear')
             print("""
 State ID: {0}
 1 - Title: {1}
@@ -196,6 +198,7 @@ State ID: {0}
         data['EDITABLE'] = self.editable
         print("saving: ", json.dumps(data))
         json.dump(data, open("states/" + self.id + ".json", "w"), indent=2)
+        log("INFO", "{0} state {1}".format(self.state, self.id))
 
 if __name__ == "__main__":
     # if folders aren't created create folders
