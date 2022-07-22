@@ -58,6 +58,18 @@ whether or not anyone can edit the file or not
 
 
 
+## PERMISSIONS
+
+since there are multiple users creating and modifying states, a system of permissions are in place.
+
+each python file is readable and executable but only writable by the host (me)
+
+logs are only readable by the host but writeable only by running the script.
+
+states are readable and writable by their owner, anyone else can't read or write unless using the program.
+
+
+
 
 At the end there sould be a binary tree with each of the different state ID's
 
